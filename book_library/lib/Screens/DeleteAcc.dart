@@ -8,25 +8,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class RegisterPage2 extends StatefulWidget {
-  @override
-  State<RegisterPage2> createState() => _RegisterPage2State();
-}
-
-class _RegisterPage2State extends State<RegisterPage2> {
+// ignore: must_be_immutable
+class DeleteAcc extends StatelessWidget {
   final signInUPController = Get.find<SignInUp>();
 
-  final _auth = FirebaseAuth.instance;
-
-  @override
-  void initState() {
-    signInUPController.email = "";
-    signInUPController.password = "";
-    super.initState();
-  }
-
+  String tempEmail = "";
+  String tempPass = "";
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -41,13 +29,13 @@ class _RegisterPage2State extends State<RegisterPage2> {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                          left: screenSize.width / 3.9,
+                          right: screenSize.width / 20,
                           top: screenSize.height / 10),
                       child: Container(
                         child: Text(
-                          "الاشتراك",
+                          "حذف الحساب",
                           style: TextStyle(
-                              fontSize: screenSize.width / 5,
+                              fontSize: screenSize.width / 6,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
@@ -58,9 +46,9 @@ class _RegisterPage2State extends State<RegisterPage2> {
                     ),
                     CustTextField(
                       screenSize: screenSize,
-                      hintText: "0123456789@ketabi.com",
+                      hintText: "البريد الالكتروني الحالي",
                       onChanged: (text) {
-                        signInUPController.email = text;
+                        tempEmail = text;
                       },
                       validError: "email",
                       showError: 4,
@@ -70,9 +58,9 @@ class _RegisterPage2State extends State<RegisterPage2> {
                     ),
                     CustTextField(
                       screenSize: screenSize,
-                      hintText: "كلمة المرور",
+                      hintText: "كلمة المرور للتأكيد",
                       onChanged: (text) {
-                        signInUPController.password = text;
+                        tempPass = text;
                       },
                       validError: "pass",
                       showError: 5,
@@ -83,58 +71,36 @@ class _RegisterPage2State extends State<RegisterPage2> {
                     Button(
                       //Push to Firebase
                       screenSize: screenSize,
-                      text: "تسجيل",
+                      text: "حذف الحساب",
                       color: Color(0xFFFF9292),
                       onTap: () async {
-                        if (signInUPController.email.length < 21 ||
-                            !signInUPController.email.contains('@ketabi.com') ||
-                            !signInUPController.email
-                                .contains(signInUPController.id)) {
-                          signInUPController.validationError[4] = true;
-                        } else {
-                          signInUPController.validationError[4] = false;
-                        }
-                        if (signInUPController.password.length < 8) {
-                          signInUPController.validationError[5] = true;
-                        } else {
-                          signInUPController.validationError[5] = false;
-                        }
-
-                        if (signInUPController.validationError[4] == false &&
-                            signInUPController.validationError[5] == false) {
-                          Get.put(ControllerGetX());
-                          Get.find<ControllerGetX>().showAlertDialog(context);
+                        Get.find<ControllerGetX>().showAlertDialog(context);
+                        if (tempEmail == signInUPController.email &&
+                            tempPass == signInUPController.password) {
                           try {
-                            UserCredential newUser =
-                                await _auth.createUserWithEmailAndPassword(
-                                    email: signInUPController.email,
-                                    password: signInUPController.password);
-                            signInUPController.inputData();
-
+                            signInUPController.deleteUser();
                             Navigator.pop(context);
                             Navigator.pop(context);
                             Navigator.pop(context);
-                            Get.to(() => CategoriesScreen());
-                          } on Exception catch (signUpError) {
-                            Navigator.pop(context);
-
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               backgroundColor: bannerColor,
                               content: Text(
-                                "الايميل الذي ادخلته مسجل بالفعل\nالرجاء التوجه الى صفحة تسجيل الدخول",
+                                "تم حذف المستخدم بنجاح",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: screenSize.width / 20),
                               ),
                             ));
-                            print('Failed to create New User $signUpError');
+                          } on Exception catch (e) {
+                            Navigator.pop(context);
+                            print('error on deleting user: $e');
                           }
                         } else {
-                          print("HERE");
+                          Navigator.pop(context);
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             backgroundColor: bannerColor,
                             content: Text(
-                              "برجاء ادخال القيم المطلوبة بشكل صحيح",
+                              "برجاء ادخال بيانات المستخدم الحالي",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: screenSize.width / 20),

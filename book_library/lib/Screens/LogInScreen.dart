@@ -132,7 +132,7 @@ class _LogInState extends State<LogIn> {
                                   .showSnackBar(SnackBar(
                                 backgroundColor: bannerColor,
                                 content: Text(
-                                  "لا يوجد مستخدم بهذه البيانات برجاء الاشتراك اولا",
+                                  "لا يوجد مستخدم بهذه البيانات\nبرجاء الاشتراك اولا",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: screenSize.width / 20),

@@ -36,6 +36,26 @@ class SignInUp extends GetxController {
     }
   }
 
+  void deleteUser() async {
+    var user = FirebaseAuth.instance.currentUser;
+    await user?.delete();
+    FirebaseFirestore.instance
+        .collection("User Information")
+        .where("ID", isEqualTo: Get.find<SignInUp>().id)
+        .get()
+        .then((value) {
+      value.docs.forEach((element) {
+        FirebaseFirestore.instance
+            .collection("User Information")
+            .doc(element.id)
+            .delete()
+            .then((value) {
+          print("Success!");
+        });
+      });
+    });
+  }
+
   Future<void> currentUserData() async {
     final User? user = auth.currentUser;
     try {

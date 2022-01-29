@@ -1,5 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:book_library/Screens/HomaPage.dart';
+import 'package:book_library/Screens/HomePage.dart';
 import 'package:book_library/constants/color_constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

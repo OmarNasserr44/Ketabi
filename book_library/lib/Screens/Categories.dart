@@ -1,10 +1,14 @@
 import 'package:book_library/GetX/GetX.dart';
+import 'package:book_library/Screens/DeleteAcc.dart';
+import 'package:book_library/Widgets/Button.dart';
 import 'package:book_library/Widgets/CategoryBox.dart';
 import 'package:book_library/Widgets/RoundContainer.dart';
 import 'package:book_library/constants/color_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+
+import 'Register.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -91,6 +95,20 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       screenSize: screenSize,
                       text: "القصص والروايات",
                       category: "Stories-and-novels",
+                    ),
+                    SizedBox(
+                      height: screenSize.height / 25,
+                    ),
+                    Button(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => DeleteAcc()));
+                      },
+                      screenSize: screenSize,
+                      text: "حذف الحساب",
+                    ),
+                    SizedBox(
+                      height: screenSize.height / 25,
                     ),
                   ],
                 ),

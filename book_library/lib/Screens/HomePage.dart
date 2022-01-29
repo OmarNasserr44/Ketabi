@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
                 },
                 screenSize: screenSize,
                 text: "الاشتراك",
-              )
+              ),
             ]))
           ],
         ));
