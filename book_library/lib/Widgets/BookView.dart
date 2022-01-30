@@ -28,13 +28,24 @@ class BookView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: () async {
-        categoryController.showAlertDialog(context);
-        String url = "Books/${categoryController.categoryName}/$bookName.pdf";
-        await firebaseControl.downloadURL(url);
-        categoryController.bookNameForQuiz = bookName;
-        questionController.assignQuestions();
-        Navigator.pop(context);
-        Get.to(() => ReadorQuiz());
+        if (categoryController.fromGuest != true) {
+          categoryController.showAlertDialog(context);
+          String url = "Books/${categoryController.categoryName}/$bookName.pdf";
+          await firebaseControl.downloadURL(url);
+          categoryController.bookNameForQuiz = bookName;
+          questionController.assignQuestions();
+          Navigator.pop(context);
+          Get.to(() => ReadorQuiz());
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: bannerColor,
+            content: Text(
+              "لا يمكنك المتابعة بحساب زائر\nبرجاء الاشتراك لكي يمكنك قراءة الكتب",
+              style: TextStyle(
+                  color: Colors.white, fontSize: screenSize.width / 20),
+            ),
+          ));
+        }
       },
       child: Padding(
         padding: EdgeInsets.only(top: screenSize.height / 15),

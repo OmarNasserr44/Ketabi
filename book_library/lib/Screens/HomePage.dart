@@ -1,10 +1,12 @@
+import 'package:book_library/GetX/GetX.dart';
+import 'package:book_library/Screens/Categories.dart';
 import 'package:book_library/Screens/LogInScreen.dart';
 import 'package:book_library/Screens/Register.dart';
-import 'package:book_library/Widgets/BackArrow.dart';
 import 'package:book_library/Widgets/Button.dart';
 import 'package:book_library/Widgets/RoundContainer.dart';
 import 'package:book_library/constants/color_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -44,6 +46,17 @@ class HomePage extends StatelessWidget {
                     },
                     screenSize: screenSize,
                     text: "الاشتراك",
+                  ),
+                  SizedBox(
+                    height: screenSize.height / 35,
+                  ),
+                  Button(
+                    onTap: () {
+                      Get.find<ControllerGetX>().fromGuest = true;
+                      Get.to(() => CategoriesScreen());
+                    },
+                    screenSize: screenSize,
+                    text: "حساب زائر",
                   ),
                 ]))
               ],

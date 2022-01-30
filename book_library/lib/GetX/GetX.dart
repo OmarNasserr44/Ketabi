@@ -12,6 +12,8 @@ class ControllerGetX extends GetxController {
   String bookNameForQuiz = "".obs();
   String quizResult = ''.obs();
 
+  bool fromGuest = false.obs();
+
   var userController = Get.find<SignInUp>();
 
   showAlertDialog(BuildContext context) {

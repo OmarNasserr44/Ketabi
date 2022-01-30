@@ -123,16 +123,11 @@ class _LogInState extends State<LogIn> {
                                   }
                                 }
                                 if (userCredential != null) {
-                                  print("HERRRREEEEE");
                                   await signInUPController.currentUserData();
-                                  print(
-                                      "NAMEEE: ${signInUPController.userName}");
-                                  print("ID: ${signInUPController.id}");
-                                  print(
-                                      "School NAme: ${signInUPController.schoolName}");
-                                  print("grade: ${signInUPController.grade}");
+
                                   Navigator.pop(context);
                                   Navigator.pop(context);
+                                  Get.find<ControllerGetX>().fromGuest = false;
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) =>
                                           CategoriesScreen()));

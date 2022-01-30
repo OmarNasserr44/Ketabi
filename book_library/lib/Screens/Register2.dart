@@ -122,6 +122,7 @@ class _RegisterPage2State extends State<RegisterPage2> {
                                 Navigator.pop(context);
                                 Navigator.pop(context);
                                 Navigator.pop(context);
+                                Get.find<ControllerGetX>().fromGuest = false;
                                 Get.to(() => CategoriesScreen());
                               } on Exception catch (signUpError) {
                                 Navigator.pop(context);

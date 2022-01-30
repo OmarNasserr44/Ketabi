@@ -108,14 +108,17 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     SizedBox(
                       height: screenSize.height / 25,
                     ),
-                    Button(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => DeleteAcc()));
-                      },
-                      screenSize: screenSize,
-                      text: "حذف الحساب",
-                    ),
+                    if (categoryController.fromGuest)
+                      Container()
+                    else
+                      Button(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => DeleteAcc()));
+                        },
+                        screenSize: screenSize,
+                        text: "حذف الحساب",
+                      ),
                     SizedBox(
                       height: screenSize.height / 25,
                     ),
