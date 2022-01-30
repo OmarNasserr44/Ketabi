@@ -1,4 +1,5 @@
 import 'package:book_library/GetX/GetX.dart';
+import 'package:book_library/Widgets/BackArrow.dart';
 import 'package:book_library/constants/QuizQuestions.dart';
 import 'package:book_library/constants/color_constant.dart';
 import 'package:flutter/material.dart';
@@ -34,19 +35,27 @@ class _QuizScreen extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+
     return MaterialApp(
       home: Scaffold(
         backgroundColor: backGColor3,
-        body: Padding(
-          padding: const EdgeInsets.all(30.0),
-          child: _questionIndex < questionController.questions.length
-              ? Quiz(
-                  answerQuestion: _answerQuestion,
-                  questionIndex: _questionIndex,
-                  questions: questionController.questions,
-                ) //Quiz
-              : Result(_totalScore),
-        ), //Padding
+        body: Stack(
+          children: [
+            BackArrow(screenSize: screenSize),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: _questionIndex < questionController.questions.length
+                  ? Quiz(
+                      answerQuestion: _answerQuestion,
+                      questionIndex: _questionIndex,
+                      questions: questionController.questions,
+                    ) //Quiz
+                  : Result(_totalScore),
+            ),
+          ],
+        ),
+        //Padding
       ), //Scaffold
       debugShowCheckedModeBanner: false,
     ); //MaterialApp
@@ -94,7 +103,7 @@ class Question extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.all(screenSize.width / 10),
       child: Container(
-        height: screenSize.height / 3,
+        height: screenSize.height / 3.5,
         width: screenSize.width,
         child: ListView(
           children: [

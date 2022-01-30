@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 class AllControllerBindings implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ControllerGetX>(() => ControllerGetX());
-    Get.lazyPut<FirebaseController>(() => FirebaseController());
-    Get.lazyPut<QuestionsController>(() => QuestionsController());
-    Get.lazyPut<SignInUp>(() => SignInUp());
+    Get.lazyPut<ControllerGetX>(() => ControllerGetX(), fenix: true);
+    Get.lazyPut<FirebaseController>(() => FirebaseController(), fenix: true);
+    Get.lazyPut<QuestionsController>(() => QuestionsController(), fenix: true);
+    Get.lazyPut<SignInUp>(() => SignInUp(), fenix: true);
   }
 }

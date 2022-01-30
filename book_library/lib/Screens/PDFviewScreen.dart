@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:book_library/Widgets/BackArrow.dart';
 import 'package:book_library/constants/color_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
@@ -21,12 +22,24 @@ class _PDFviewScreenState extends State<PDFviewScreen> {
       StreamController<String>();
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
         appBar: AppBar(
           title: const Text(''),
           backgroundColor: white,
           elevation: 0,
           actions: <Widget>[
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(
+                Icons.arrow_back,
+                size: screenSize.width / 10,
+                color: Colors.blue[900],
+              ),
+            ),
             StreamBuilder<String>(
                 stream: _pageCountController.stream,
                 builder: (_, AsyncSnapshot<String> snapshot) {

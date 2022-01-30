@@ -1,3 +1,4 @@
+import 'package:book_library/Widgets/BackArrow.dart';
 import 'package:book_library/Widgets/BookView.dart';
 import 'package:book_library/constants/color_constant.dart';
 import 'package:flutter/material.dart';
@@ -34,10 +35,15 @@ class BooksScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            Center(
-              child: Column(
-                children: noBooks(screenSize),
-              ),
+            Stack(
+              children: [
+                BackArrow(screenSize: screenSize),
+                Center(
+                  child: Column(
+                    children: noBooks(screenSize),
+                  ),
+                ),
+              ],
             )
           ],
         ),

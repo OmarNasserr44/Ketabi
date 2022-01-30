@@ -1,5 +1,6 @@
 import 'package:book_library/GetX/GetX.dart';
 import 'package:book_library/Screens/DeleteAcc.dart';
+import 'package:book_library/Widgets/BackArrow.dart';
 import 'package:book_library/Widgets/Button.dart';
 import 'package:book_library/Widgets/CategoryBox.dart';
 import 'package:book_library/Widgets/RoundContainer.dart';
@@ -34,10 +35,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         children: [
           Column(
             children: [
-              RoundContainer(
-                screenSize: screenSize,
-                text: "تصنيفات الكتب",
-                longText: true,
+              Stack(
+                children: [
+                  RoundContainer(
+                    screenSize: screenSize,
+                    text: "تصنيفات الكتب",
+                    longText: true,
+                  ),
+                  BackArrow(
+                    screenSize: screenSize,
+                    pdf: 3,
+                  ),
+                ],
               ),
               SizedBox(
                 height: screenSize.height / 2,

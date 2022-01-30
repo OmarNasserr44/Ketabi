@@ -2,6 +2,7 @@
 
 import 'package:book_library/Requests/Firebase.dart';
 import 'package:book_library/Screens/Quiz.dart';
+import 'package:book_library/Widgets/BackArrow.dart';
 import 'package:book_library/constants/color_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -22,8 +23,15 @@ class ReadorQuiz extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(
-              height: screenSize.height / 24,
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(
+                Icons.arrow_back,
+                size: screenSize.width / 10,
+                color: Colors.white,
+              ),
             ),
             ReadQuizWiget(
               screenSize: screenSize,

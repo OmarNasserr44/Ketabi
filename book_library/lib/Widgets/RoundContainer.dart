@@ -20,15 +20,20 @@ class RoundContainer extends StatelessWidget {
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(screenSize.width / 2),
               bottomRight: Radius.circular(screenSize.width / 2))),
-      child: Center(
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: longText ? screenSize.width / 4 : screenSize.width / 3,
-              fontWeight: FontWeight.bold,
-              color: Colors.white),
-        ),
+      child: Column(
+        children: [
+          Center(
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize:
+                      longText ? screenSize.width / 4 : screenSize.width / 3,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+          ),
+        ],
       ),
       height: screenSize.height / 2.5,
       width: double.infinity,

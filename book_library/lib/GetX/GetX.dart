@@ -47,7 +47,7 @@ class ControllerGetX extends GetxController {
 
     final message = Message()
       ..from = Address(gmailname, 'Ketabi')
-      ..recipients.add('omarnasserr44@gmail.com')
+      ..recipients.add('dalalalrashidid@gmail.com')
       ..subject = 'Ketabi Team ${DateTime.now().toString().substring(0, 10)}'
       ..text = 'This is the plain text.\nThis is line 2 of the text part.'
       ..html =
