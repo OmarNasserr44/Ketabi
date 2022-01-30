@@ -18,6 +18,14 @@ class _RegisterPageState extends State<RegisterPage> {
   final signInUPController = Get.find<SignInUp>();
 
   @override
+  void initState() {
+    signInUPController.schoolName = "";
+    signInUPController.userName = "";
+    signInUPController.grade = "";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
@@ -83,18 +91,18 @@ class _RegisterPageState extends State<RegisterPage> {
                           validError: "else",
                           showError: 2,
                         ),
-                        SizedBox(
-                          height: screenSize.height / 35,
-                        ),
-                        CustTextField(
-                          screenSize: screenSize,
-                          hintText: "السجل المدني",
-                          onChanged: (text) {
-                            signInUPController.id = text;
-                          },
-                          validError: "id",
-                          showError: 3,
-                        ),
+                        // SizedBox(
+                        //   height: screenSize.height / 35,
+                        // ),
+                        // CustTextField(
+                        //   screenSize: screenSize,
+                        //   hintText: "السجل المدني",
+                        //   onChanged: (text) {
+                        //     signInUPController.id = text;
+                        //   },
+                        //   validError: "id",
+                        //   showError: 3,
+                        // ),
                         SizedBox(
                           height: screenSize.height / 10,
                         ),
@@ -112,26 +120,23 @@ class _RegisterPageState extends State<RegisterPage> {
                                 4) {
                               signInUPController.validationError[1] = false;
                             }
-                            if (signInUPController.grade.length < 0) {
+                            if (signInUPController.grade.length < 2) {
                               signInUPController.validationError[2] = true;
-                            } else if (signInUPController.grade.length > 0) {
+                            } else if (signInUPController.grade.length > 2) {
                               signInUPController.validationError[2] = false;
                             }
-                            if (signInUPController.id.length > 10 ||
-                                signInUPController.id.length < 10) {
-                              signInUPController.validationError[3] = true;
-                            } else if (signInUPController.id.length == 10) {
-                              signInUPController.validationError[3] = false;
-                            }
+                            // if (signInUPController.id.length > 10 ||
+                            //     signInUPController.id.length < 10) {
+                            //   signInUPController.validationError[3] = true;
+                            // } else if (signInUPController.id.length == 10) {
+                            //   signInUPController.validationError[3] = false;
+                            // }
                             if (signInUPController
                                         .validationError[0] ==
                                     false &&
-                                signInUPController
-                                        .validationError[1] ==
+                                signInUPController.validationError[1] ==
                                     false &&
                                 signInUPController.validationError[2] ==
-                                    false &&
-                                signInUPController.validationError[3] ==
                                     false) {
                               Get.to(() => RegisterPage2());
                             } else {

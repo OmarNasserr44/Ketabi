@@ -149,7 +149,6 @@ class _LogInState extends State<LogIn> {
                                 print('Failed to create New User $e');
                               }
                             } else {
-                              print("HERE");
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 backgroundColor: bannerColor,

@@ -90,11 +90,13 @@ class _RegisterPage2State extends State<RegisterPage2> {
                           text: "تسجيل",
                           color: Color(0xFFFF9292),
                           onTap: () async {
+                            if (signInUPController.email != "") {
+                              signInUPController.id =
+                                  signInUPController.email.substring(0, 10);
+                            }
                             if (signInUPController.email.length < 21 ||
                                 !signInUPController.email
-                                    .contains('@ketabi.com') ||
-                                !signInUPController.email
-                                    .contains(signInUPController.id)) {
+                                    .contains('@ketabi.com')) {
                               signInUPController.validationError[4] = true;
                             } else {
                               signInUPController.validationError[4] = false;
@@ -140,7 +142,6 @@ class _RegisterPage2State extends State<RegisterPage2> {
                                 print('Failed to create New User $signUpError');
                               }
                             } else {
-                              print("HERE");
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 backgroundColor: bannerColor,
